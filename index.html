@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1320px;
+            height: 966px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/hexgrid_stats3_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[40.57346295477509,-74.11647478679447],[40.90157503297025,-73.6678734184737]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_MapboxStreetsv10_0 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.mapbox.com/about/maps/">© Mapbox © OpenStreetMap</a>',
+        });
+        layer_MapboxStreetsv10_0;
+        map.addLayer(layer_MapboxStreetsv10_0);
+        function pop_hexgrid_stats3_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['left'] !== null ? Autolinker.link(String(feature.properties['left'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bottom'] !== null ? Autolinker.link(String(feature.properties['bottom'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['right'] !== null ? Autolinker.link(String(feature.properties['right'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['top'] !== null ? Autolinker.link(String(feature.properties['top'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['hexid'] !== null ? Autolinker.link(String(feature.properties['hexid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_co'] !== null ? Autolinker.link(String(feature.properties['tipfare_co'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tipfare_me'] !== null ? Autolinker.link(String(feature.properties['tipfare_me'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_hexgrid_stats3_1_0(feature) {
+            if (feature.properties['tipfare_me'] >= 0.000000 && feature.properties['tipfare_me'] <= 0.029286 ) {
+                return {
+                pane: 'pane_hexgrid_stats3_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.772)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,0.772)',
+            }
+            }
+            if (feature.properties['tipfare_me'] >= 0.029286 && feature.properties['tipfare_me'] <= 0.117647 ) {
+                return {
+                pane: 'pane_hexgrid_stats3_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.772)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,191,191,0.772)',
+            }
+            }
+            if (feature.properties['tipfare_me'] >= 0.117647 && feature.properties['tipfare_me'] <= 0.156250 ) {
+                return {
+                pane: 'pane_hexgrid_stats3_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.772)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,128,128,0.772)',
+            }
+            }
+            if (feature.properties['tipfare_me'] >= 0.156250 && feature.properties['tipfare_me'] <= 0.190693 ) {
+                return {
+                pane: 'pane_hexgrid_stats3_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.772)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,64,64,0.772)',
+            }
+            }
+            if (feature.properties['tipfare_me'] >= 0.190693 && feature.properties['tipfare_me'] <= 0.227912 ) {
+                return {
+                pane: 'pane_hexgrid_stats3_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.772)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,0.772)',
+            }
+            }
+        }
+        map.createPane('pane_hexgrid_stats3_1');
+        map.getPane('pane_hexgrid_stats3_1').style.zIndex = 401;
+        map.getPane('pane_hexgrid_stats3_1').style['mix-blend-mode'] = 'normal';
+        var layer_hexgrid_stats3_1 = new L.geoJson(json_hexgrid_stats3_1, {
+            attribution: '',
+            pane: 'pane_hexgrid_stats3_1',
+            onEachFeature: pop_hexgrid_stats3_1,
+            style: style_hexgrid_stats3_1_0,
+        });
+        bounds_group.addLayer(layer_hexgrid_stats3_1);
+        map.addLayer(layer_hexgrid_stats3_1);
+        setBounds();
+        </script>
+    </body>
+</html>
